@@ -9,7 +9,7 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>MyApp</name>
+  <name>MyApp1</name>
 
   <distributionManagement>
     <repository>
