@@ -22,7 +22,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           # IMPORTANT: Replace 'YOUR_IAM_ROLE_ARN_GOES_HERE' with the actual ARN of your IAM role from AWS!
-          role-to-assume: arn:aws:iam::782860593533:role/githubsasi
+          role-to-assume: arn:aws:iam::760715349705:role/cicdgithub
           aws-region: eu-north-1 # Example: us-east-1
 
       - name: Build with Maven
@@ -42,8 +42,8 @@ jobs:
         if: success()
         run: |
           aws ses send-email \
-            --from 'hannap607@gmail.com' \
-            --destination 'ToAddresses="hannapaikkatt1234@gmail.com"' \
+            --from 'akr813703@gmail.com' \
+            --destination 'ToAddresses="akr8137035@gmail.com"' \
             --message 'Subject={Data="✅ Build Success - ${{ github.repository }}"},Body={Text={Data="Build for ${{ github.repository }} on branch `${{ github.ref_name}}` was successful!\n\nCommit: `${{ github.sha}}`\nWorkflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}}' \
             --region eu-north-1
 
@@ -51,7 +51,7 @@ jobs:
         if: failure()
         run: |
           aws ses send-email \
-            --from 'hannap607@gmail.com' \
-            --destination 'ToAddresses="hannapaikkatt1234@gmail.com"' \
+            --from 'akr813703@gmail.com' \
+            --destination 'ToAddresses="akr8137035@gmail.com"' \
             --message 'Subject={Data="❌ Build FAILED - ${{ github.repository }}"},Body={Text={Data="*ALERT:* Build for ${{ github.repository }} on branch `${{ github.ref_name}}` *FAILED!*\n\nCommit: `${{ github.sha}}`\n*Please review logs:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}}' \
             --region eu-north-1
